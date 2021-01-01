@@ -1,0 +1,3 @@
+graft NYCtaxifarePredictor
+global-exclude *.py[cod] __pycache__ *.so *.ipynb
+include requirements.txt
