@@ -23,7 +23,20 @@ train_on_gcp:
 					--runtime-version=${RUNTIME_VERSION} \
 					--region ${REGION} \
 					--stream-logs
+# ----------------------------------
+#          API
+# ----------------------------------
+api:
+	-@python app.py
 
+deploy_heroku:
+	-@git push heroku master
+	-@heroku ps:scale web=1
+
+heroku_set_gcp_env:
+	-@heroku config:set GOOGLE_APPLICATION_CREDENTIALS=$(/Users/Guli/code/Guli-Y/keys/gcp_keys/wagon-project-guli-49b165d9a0ea.json)
+
+heroku_update: deploy_heroku heroku_set_gcp_env
 # ----------------------------------
 #          INSTALL & TEST
 # ----------------------------------
