@@ -32,7 +32,7 @@ api:
 deploy_heroku:
 	-@git push heroku master
 	-@heroku ps:scale web=1
-	-@heroku config:set GOOGLE_APPLICATION_CREDENTIALS=$(/Users/Guli/code/Guli-Y/keys/gcp_keys/wagon-project-guli-49b165d9a0ea.json)
+	-@heroku config:set GOOGLE_APPLICATION_CREDENTIALS='$(< /Users/Guli/code/Guli-Y/keys/gcp_keys/wagon-project-guli-49b165d9a0ea.json)'
 # ----------------------------------
 #          INSTALL & TEST
 # ----------------------------------
