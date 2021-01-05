@@ -12,7 +12,6 @@ gcsfs==0.7.0
 simplejson
 scikit-learn
 statsmodels
-folium
 xgboost
 termcolor
 mlflow
@@ -20,7 +19,6 @@ memoized_property
 joblib
 google-cloud-storage
 google-auth-oauthlib
-python-dotenv
 flask==1.1.1
 flask-cors
 gunicorn
