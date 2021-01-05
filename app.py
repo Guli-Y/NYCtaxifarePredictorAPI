@@ -13,19 +13,24 @@ CORS(app)
 def index():
     return 'OK'
 
-DEFAULT_PARAMS = {'pickup_latitude': 40.76244,
-                    'pickup_longitude': -73.98518,
-                    'pickup_datetime': str(datetime.utcnow())+' UTC'}
-
+COLS = ['key',
+        'pickup_datetime',
+        'pickup_longitude',
+        'pickup_latitude',
+        'dropoff_longitude',
+        'dropoff_latitude',
+        'passenger_count']
 
 def format_input(input):
-    for key, value in DEFAULT_PARAMS.items():
-        input.setdefault(key, value)
-    formated_input = {'pickup_datetime': str(input['pickup_datetime']),
+    formated_input = {
+                        "key": str(input["key"]),
+                        'pickup_datetime': str(input['pickup_datetime']),
                         'pickup_latitude': float(input['pickup_latitude']),
                         'pickup_longitude': float(input['pickup_longitude']),
                         'dropoff_latitude': float(input['dropoff_latitude']),
-                        'dropoff_longitude': float(input['dropoff_longitude'])}
+                        'dropoff_longitude': float(input['dropoff_longitude']),
+                        "passenger_count": float(input["passenger_count"])
+                        }
     return formated_input
 
 PIPELINE = joblib.load('model.joblib')
@@ -37,6 +42,7 @@ def predict_fare():
         inputs = [inputs]
     inputs = [format_input(point) for point in inputs]
     df = pd.DataFrame(inputs)
+    df = df[COLS]
     result = PIPELINE.predict(df)
     result = [round(float(fare), 3) for fare in result]
     return {'predictions': result}
