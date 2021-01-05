@@ -1,20 +1,16 @@
 from google.cloud import storage
 from google.oauth2 import service_account
-import json
 import joblib
 from termcolor import colored
 import os
 
 BUCKET_NAME = 'nyc_taxifare_predictor'
 MODEL_NAME = 'xgboost'
-VERSION_NAME = 'tuned_1000000'
+VERSION_NAME = 'RunNo6'
 
 def get_credentials():
-    credentials_raw = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-    if '.json' in credentials_raw:
-        credentials_raw = open(credentials_raw).read()
-    creds_json = json.loads(credentials_raw)
-    creds_gcp = service_account.Credentials.from_service_account_info(creds_json)
+    json_path = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+    creds_gcp = service_account.Credentials.from_service_account_file(json_path)
     return creds_gcp
 
 def load_model(model_name=MODEL_NAME, version_name=VERSION_NAME):
@@ -26,3 +22,6 @@ def load_model(model_name=MODEL_NAME, version_name=VERSION_NAME):
     model = joblib.load('model.joblib')
     os.remove('model.joblib')
     return model
+
+if __name__ == '__main__':
+    print(get_credentials())
