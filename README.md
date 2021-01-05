@@ -20,5 +20,5 @@ result = requests.get(api_url+"predict_fare", json=trips).json()
 
 output: {'predictions': [11.555]}
 
-note: trips can be a list of dictionaries, each dictionary represents a single trip.
+note: trips can be a list of dictionaries, each dictionary representing a single trip.
 
