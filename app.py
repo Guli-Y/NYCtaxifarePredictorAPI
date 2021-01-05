@@ -29,8 +29,8 @@ def format_input(input):
                         }
     return formated_input
 
-#PIPELINE = joblib.load('model.joblib')
-PIPELINE = load_model()
+PIPELINE = joblib.load('model.joblib')
+#PIPELINE = load_model()
 
 @app.route('/predict_fare', methods=['GET', 'POST'])
 def predict_fare():
