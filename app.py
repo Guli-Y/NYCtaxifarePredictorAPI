@@ -13,23 +13,19 @@ CORS(app)
 def index():
     return 'OK'
 
-COLS = ['key',
-        'pickup_datetime',
+X = ['pickup_datetime',
         'pickup_longitude',
         'pickup_latitude',
         'dropoff_longitude',
-        'dropoff_latitude',
-        'passenger_count']
+        'dropoff_latitude']
 
 def format_input(input):
     formated_input = {
-                        "key": str(input["key"]),
                         'pickup_datetime': str(input['pickup_datetime']),
                         'pickup_latitude': float(input['pickup_latitude']),
                         'pickup_longitude': float(input['pickup_longitude']),
-                        'dropoff_latitude': float(input['dropoff_latitude']),
                         'dropoff_longitude': float(input['dropoff_longitude']),
-                        "passenger_count": float(input["passenger_count"])
+                        'dropoff_latitude': float(input['dropoff_latitude'])
                         }
     return formated_input
 
@@ -42,7 +38,7 @@ def predict_fare():
         inputs = [inputs]
     inputs = [format_input(point) for point in inputs]
     df = pd.DataFrame(inputs)
-    df = df[COLS]
+    df = df[X]
     result = PIPELINE.predict(df)
     result = [round(float(fare), 3) for fare in result]
     return {'predictions': result}
