@@ -6,12 +6,16 @@ If we want to know the taxi fare amount for a trip that starts at 2021-1-2 20:35
 from location A (latitude=40.733, longitude=-73.987) and ends at location
 B (latitude=40.758, longitude=-73.991):
 
-trips = [{
-          'pickup_datetime': '2021-1-2 20:35:00 UTC',
+trips = [{ 'pickup_datetime': '2021-1-2 20:35:00 UTC',
+
           'pickup_longitude': -73.987,
+
           'pickup_latitude': 40.733,
+
           'dropoff_longitude': -73.991,
+
           'dropoff_latitude': 40.758
+
           }]
 
 api_url = 'https://nyc-taxi-fare-predictor-api.herokuapp.com/'
