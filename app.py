@@ -9,6 +9,10 @@ import joblib
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def index():
+    return 'OK'
+
 DEFAULT_PARAMS = {'pickup_latitude': 40.76244,
                     'pickup_longitude': -73.98518,
                     'pickup_datetime': str(datetime.utcnow())+' UTC'}
@@ -24,11 +28,7 @@ def format_input(input):
                         'dropoff_longitude': float(input['dropoff_longitude'])}
     return formated_input
 
-@app.route('/')
-def index():
-    return 'OK'
-
-PIPELINE = load_model()
+PIPELINE = joblib.load('model.joblib')
 
 @app.route('/predict_fare', methods=['GET', 'POST'])
 def predict_fare():

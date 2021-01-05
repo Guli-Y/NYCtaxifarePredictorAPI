@@ -20,8 +20,8 @@ def load_model(model_name=MODEL_NAME, version_name=VERSION_NAME):
     blob.download_to_filename('model.joblib')
     print(colored(f'------------ downloaded the trained model from storage ------------', 'blue'))
     model = joblib.load('model.joblib')
-    os.remove('model.joblib')
+    #os.remove('model.joblib')
     return model
 
 if __name__ == '__main__':
-    print(get_credentials())
+    load_model()

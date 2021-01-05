@@ -16,12 +16,9 @@ import time
 from google.cloud import storage
 import os
 import joblib
-from dotenv import load_dotenv
 
 ################################# MLflow ###################################
-dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
-load_dotenv(dotenv_path)
-MLFLOW_URI = os.getenv('MLFLOW_URI')
+MLFLOW_URI = "https://mlflow.lewagon.co/")
 EXPERIMENT_NAME = '[DE][Berlin][Guli]NYCtaxifarePredictor'
 ################################# GCP ######################################
 BUCKET_NAME = 'nyc_taxifare_predictor'
